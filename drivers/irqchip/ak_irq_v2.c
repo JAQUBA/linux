@@ -82,7 +82,7 @@
 #define AK_L2MEM_IRQ_ENABLE     (AK_VA_L2CTRL   + 0x9C)
 #endif
 
-#if defined(CONFIG_MACH_KM01A)
+#if defined(CONFIG_MACH_KM01A) || defined(CONFIG_MACH_AK3918EV300L)
 #define NR_BANKS        2
 #define SYSCTRL_IRQ     3/*bit3:system ctrl*/
 #elif defined(CONFIG_MACH_AK3918AV130)
@@ -96,7 +96,7 @@
 #endif
 
 /* Fix bank_irq size To 32*/
-#if defined(CONFIG_MACH_KM01A)
+#if defined(CONFIG_MACH_KM01A) || defined(CONFIG_MACH_AK3918EV300L)
 static int bank_irqs[NR_BANKS] = {32, 32};
 #elif defined(CONFIG_MACH_AK3918AV130)
 /*
@@ -117,7 +117,7 @@ struct ak_irqchip_intc {
     void __iomem *status[NR_BANKS];
 };
 
-#if defined(CONFIG_MACH_KM01A)
+#if defined(CONFIG_MACH_KM01A) || defined(CONFIG_MACH_AK3918EV300L)
 static void __iomem *reg_mask[] __initconst =
     { AK_IRQ_MASK, AK_SYSCTRL_INT_MASK };
 static void __iomem *reg_status[] __initconst =
@@ -288,7 +288,7 @@ static int __init ak_int_of_init(struct device_node *node,
 {
     int b, i;
     int virq;
-#if defined(CONFIG_MACH_KM01A)
+#if defined(CONFIG_MACH_KM01A) || defined(CONFIG_MACH_AK3918EV300L)
     int sysctrl_virq;
 #elif defined(CONFIG_MACH_AK3918AV130)
     int sysctrl_virq, sss_virq, ess_virq, iss_virq, nss_virq, twi_virq;

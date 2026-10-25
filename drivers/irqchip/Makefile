@@ -1,5 +1,5 @@
 obj-$(CONFIG_IRQCHIP)			+= irqchip.o
-ifeq ($(CONFIG_MACH_AK3918AV130),y)
+ifeq ($(CONFIG_MACH_AK3918AV130)$(CONFIG_MACH_AK3918EV300L),y)
 obj-y					+= ak_irq_v2.o
 else
 obj-$(CONFIG_ARCH_AK)			+= ak_irq.o

@@ -3,7 +3,7 @@
  * AnyCloud39AV130 SDK, in mach/av130/: its register map and IRQ layout
  * share nothing with EV200/EV330 beyond the names.
  */
-#ifdef CONFIG_MACH_AK3918AV130
+#if defined(CONFIG_MACH_AK3918AV130) || defined(CONFIG_MACH_AK3918EV300L)
 #include <mach/av130/entry-macro.S>
 #else
 /*

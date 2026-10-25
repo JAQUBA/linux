@@ -133,6 +133,7 @@
 
 #ifdef CONFIG_MACH_AK3918EV300L
 #define AK_PIN_MIPI_REG                  (AK_VA_SYSCTRL + 0x238)
+#define AK_GPIO_OFFSET(pin)              ((pin) & 0x1f)
 #endif
 
 #define AK_PIN_PUPD_DISABLE     0
@@ -2608,6 +2609,7 @@ static int ak_gpio_suspend(void)
 static void ak_gpio_resume(void)
 {
     int gpio_index = 0;
+    int i;
 
     for (gpio_index = 0; gpio_index < wakeup_gpio_cnt; gpio_index++) {
         pr_info("%s GPIO#%d\n", __func__, ak_wakeup_gpio[gpio_index]);

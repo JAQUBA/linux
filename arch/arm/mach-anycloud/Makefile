@@ -37,3 +37,9 @@ obj-$(CONFIG_MACH_AK3918AV130)	+= ak_cache_count.o
 obj-$(CONFIG_MACH_AK3918AV130)	+= ak_notifier.o
 obj-$(CONFIG_MACH_AK3918AV130)	+= ak_pm.o
 obj-$(CONFIG_MACH_AK3918AV130)	+= ak_l2_exebuf.o
+
+# AK3918EV300L uses the dual-L2 controller from the AnyCloud SDK.
+obj-$(CONFIG_MACH_AK3918EV300L)	+= mach-ak3918ev300l.o
+obj-$(CONFIG_MACH_AK3918EV300L)	+= ak_l2_dual.o
+obj-$(CONFIG_MACH_AK3918EV300L)	+= ak_module_interface.o
+obj-$(CONFIG_MACH_AK3918EV300L)	+= ak_cache_count.o

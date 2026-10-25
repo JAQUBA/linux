@@ -1,0 +1,39 @@
+/dts-v1/;
+#include "anycloud_ak3918ev300l.dtsi"
+
+/ {
+    model = "AK3918EV300L UCM53WE1-12E1 diagnostic";
+    compatible = "anyka,ak3918ev300l";
+
+    /delete-node/ reserved-memory;
+    /delete-node/ ion;
+
+    chosen {
+        stdout-path = "/soc/uart0@20130000:115200n8";
+        bootargs = "console=ttySAK0,115200n8 root=/dev/ram0 rw init=/init mem=64M memsize=64M loglevel=8 ignore_loglevel panic=0";
+    };
+};
+
+&gpio {
+    status = "okay";
+};
+
+&uart0 {
+    pinctrl-names = "default";
+    pinctrl-0 = <&uart0_pins>;
+    current-speed = <115200>;
+    status = "okay";
+};
+
+&mmc1 {
+    status = "disabled";
+};
+
+&watchdog {
+    status = "disabled";
+};
+
+&ramdisk {
+    /delete-property/ memory-region;
+    status = "disabled";
+};

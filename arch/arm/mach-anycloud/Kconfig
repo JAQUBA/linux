@@ -74,12 +74,22 @@ config MACH_AK3918AV130
 	  interrupt, timer or UART block with EV200/EV330, so it cannot be
 	  built into the same kernel as those.
 
+	config MACH_AK3918EV300L
+		bool "AK3918EV300L support"
+		depends on ARCH_AK && !MACH_AK39EV330 && !MACH_AK3918EV200 && !MACH_AK3918 && !MACH_AK3918AV130
+		select MULTI_IRQ_HANDLER
+		help
+		  Support for the AK3918EV300L (chip ID 0x535434xx). This is a
+		  distinct platform from AK3918EV300 and AK3918AV130, despite sharing
+		  some clock, UART, pinctrl and interrupt-controller drivers.
+
 config AK_OPENIPC_DTB
 	string "Device tree appended to the uImage"
 	depends on ARCH_AK
 	default "ak3918ev200-demb" if MACH_AK3918EV200
 	default "ak3918-demb" if MACH_AK3918
 	default "ak3918av130-demb" if MACH_AK3918AV130
+	default "ak3918ev300l-camera" if MACH_AK3918EV300L
 	default "ak3918ev300-demb" if MACH_AK3918EV300
 	default "ak3918ev330-demb"
 	help

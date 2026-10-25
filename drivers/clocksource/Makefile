@@ -67,7 +67,7 @@ obj-$(CONFIG_CLKSRC_ST_LPC)		+= clksrc_st_lpc.o
 obj-$(CONFIG_X86_NUMACHIP)		+= numachip.o
 # AK3918AV130's timers sit in a separate block with their own register
 # layout; the vendor's drivers for them are kept whole as *_av130.o.
-ifeq ($(CONFIG_MACH_AK3918AV130),y)
+ifeq ($(CONFIG_MACH_AK3918AV130)$(CONFIG_MACH_AK3918EV300L),y)
 obj-y					+= ak_timer_av130.o ak_hardware_timer_av130.o
 else
 obj-$(CONFIG_ARCH_AK)			+= ak_timer.o

@@ -1209,6 +1209,7 @@ unsigned long ess_vclk_get_clk(struct ak_factor_clk* factor_clk,
     return rate;
 }
 
+#if !defined(CONFIG_MACH_AK3918EV300L)
 unsigned long nss_vclk_get_clk(struct ak_factor_clk* factor_clk,
     unsigned long parent_rate_pll1, unsigned long parent_rate_pll2,
     unsigned long parent_rate_pll3)
@@ -1243,6 +1244,7 @@ unsigned long nss_vclk_get_clk(struct ak_factor_clk* factor_clk,
 
     return rate;
 }
+#endif
 
 unsigned long iss_vclk_get_clk(struct ak_factor_clk* factor_clk,
     unsigned long parent_rate_pll1, unsigned long parent_rate_pll2,
