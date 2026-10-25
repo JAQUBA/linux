@@ -10,12 +10,20 @@
 
     chosen {
         stdout-path = "/soc/uart0@20130000:115200n8";
-        bootargs = "console=ttySAK0,115200n8 root=/dev/ram0 rw init=/init mem=64M memsize=64M loglevel=8 ignore_loglevel panic=0";
+        bootargs = "console=ttySAK0,115200n8 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait init=/init mem=64M memsize=64M loglevel=8 ignore_loglevel panic=0";
     };
 };
 
 &gpio {
     status = "okay";
+
+    sdmmc0_pins: sdmmc0_pins {
+        anyka,pins = <XGPIO_033 XGPIO_034 XGPIO_035>;
+        anyka,function = <XGPIO_033_FUNC_SDIO0_CMD
+                          XGPIO_034_FUNC_SDIO0_MCLK
+                          XGPIO_035_FUNC_SDIO0_DATA0>;
+        anyka,pull = <0x00010010 0x00010010 0x00010010>;
+    };
 };
 
 &uart0 {
@@ -25,8 +33,25 @@
     status = "okay";
 };
 
+&mmc0 {
+    pinctrl-names = "default";
+    pinctrl-0 = <&sdmmc0_pins>;
+    bus-width = <1>;
+    status = "okay";
+};
+
 &mmc1 {
     status = "disabled";
+};
+
+&spi0 {
+    pinctrl-names = "default";
+    pinctrl-0 = <&spiflash_pins>;
+    status = "okay";
+};
+
+&spif0 {
+    status = "okay";
 };
 
 &watchdog {

@@ -93,8 +93,9 @@ static int akmci_of_xfer_dma(struct akmci_host *host, dma_addr_t phys,
 	if (host->l2buf_id == AKMCI_L2BUF_NONE)
 		return -EIO;
 
-	return l2_combuf_dma((unsigned long)phys, host->l2buf_id, len,
-			     to_card ? MEM2BUF : BUF2MEM, AK_FALSE);
+	l2_combuf_dma((unsigned long)phys, host->l2buf_id, len,
+		      to_card ? MEM2BUF : BUF2MEM, AK_FALSE);
+	return 0;
 }
 
 static int akmci_of_xfer_cpu(struct akmci_host *host, void *virt,
@@ -103,8 +104,9 @@ static int akmci_of_xfer_cpu(struct akmci_host *host, void *virt,
 	if (host->l2buf_id == AKMCI_L2BUF_NONE)
 		return -EIO;
 
-	return l2_combuf_cpu((unsigned long)virt, host->l2buf_id, len,
-			     to_card ? MEM2BUF : BUF2MEM);
+	l2_combuf_cpu((unsigned long)virt, host->l2buf_id, len,
+		      to_card ? MEM2BUF : BUF2MEM);
+	return 0;
 }
 
 static int akmci_of_wait(struct akmci_host *host)
@@ -210,6 +212,7 @@ static irqreturn_t akmci_of_cd_irq(int irq, void *dev)
 static const struct of_device_id akmci_of_match[] = {
 	{ .compatible = "anyka,ak3918ev200-mmc0", .data = (void *)AKMCI_DEV_MMC },
 	{ .compatible = "anyka,ak3918ev200-mmc1", .data = (void *)AKMCI_DEV_SDIO },
+	{ .compatible = "anyka,ak3918ev300l-mmc0", .data = (void *)AKMCI_DEV_MMC },
 	{ .compatible = "anyka,ak39ev330-mmc0",   .data = (void *)AKMCI_DEV_MMC },
 	{ .compatible = "anyka,ak39ev330-mmc1",   .data = (void *)AKMCI_DEV_SDIO },
 	{ },
